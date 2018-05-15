@@ -163,6 +163,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\BridesImages\164100104-bride-wallpapers.jpg" />
+    <Content Include="Images\BridesImages\164100146-bride-wallpapers.jpg" />
+    <Content Include="Images\BridesImages\164100267-bride-wallpapers.jpg" />
+    <Content Include="Images\BridesImages\164100335-bride-wallpapers.jpg" />
+    <Content Include="Images\BridesImages\164100351-bride-wallpapers.jpg" />
+    <Content Include="Images\BridesImages\164100395-bride-wallpapers.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
