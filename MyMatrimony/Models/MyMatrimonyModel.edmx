@@ -1,0 +1,804 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MyMatrimonyDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblAnnualIncomeMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnnualIncome" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBodyTypeMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BodyType" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBodyWeightMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BodyWeight" Type="numeric" Precision="2" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCasteMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CasteName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblCityMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblDietMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Diet" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblGenderMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblHeightMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Height" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMembers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="MobileNo" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="ReligionId" Type="int" Nullable="false" />
+          <Property Name="HeightId" Type="int" Nullable="false" />
+          <Property Name="MotherTongueId" Type="int" Nullable="false" />
+          <Property Name="CasteId" Type="int" Nullable="false" />
+          <Property Name="GenderId" Type="int" Nullable="false" />
+          <Property Name="SkinToneId" Type="int" Nullable="false" />
+          <Property Name="BodyTypeId" Type="int" />
+          <Property Name="BodyWeightId" Type="int" />
+          <Property Name="DietId" Type="int" />
+          <Property Name="Drink" Type="bit" />
+          <Property Name="Smoke" Type="bit" />
+          <Property Name="Education" Type="nvarchar" MaxLength="50" />
+          <Property Name="AnnualIncomeId" Type="int" Nullable="false" />
+          <Property Name="Occupation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Hobbies" Type="nvarchar" MaxLength="500" />
+          <Property Name="AboutMyself" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="tblMotherTongueMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MotherTongue" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblReligionMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReligionName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSkinToneMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SkinTone" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblMembers_tblAnnualIncomeMaster">
+          <End Role="tblAnnualIncomeMaster" Type="Self.tblAnnualIncomeMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAnnualIncomeMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="AnnualIncomeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblBodyTypeMaster">
+          <End Role="tblBodyTypeMaster" Type="Self.tblBodyTypeMaster" Multiplicity="0..1" />
+          <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBodyTypeMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="BodyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblBodyWeightMaster">
+          <End Role="tblBodyWeightMaster" Type="Self.tblBodyWeightMaster" Multiplicity="0..1" />
+          <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBodyWeightMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="BodyWeightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblCasteMaster">
+          <End Role="tblCasteMaster" Type="Self.tblCasteMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCasteMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="CasteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblCityMaster">
+          <End Role="tblCityMaster" Type="Self.tblCityMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCityMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblDietMaster">
+          <End Role="tblDietMaster" Type="Self.tblDietMaster" Multiplicity="0..1" />
+          <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDietMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="DietId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblGenderMaster">
+          <End Role="tblGenderMaster" Type="Self.tblGenderMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGenderMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblHeightMaster">
+          <End Role="tblHeightMaster" Type="Self.tblHeightMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHeightMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="HeightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblMotherTongueMaster">
+          <End Role="tblMotherTongueMaster" Type="Self.tblMotherTongueMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMotherTongueMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="MotherTongueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblReligionMaster">
+          <End Role="tblReligionMaster" Type="Self.tblReligionMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblReligionMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="ReligionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblSkinToneMaster">
+          <End Role="tblSkinToneMaster" Type="Self.tblSkinToneMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSkinToneMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="SkinToneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spGetMemberById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MemberId" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="MyMatrimonyDBModelStoreContainer">
+          <EntitySet Name="tblAnnualIncomeMaster" EntityType="Self.tblAnnualIncomeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBodyTypeMaster" EntityType="Self.tblBodyTypeMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBodyWeightMaster" EntityType="Self.tblBodyWeightMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCasteMaster" EntityType="Self.tblCasteMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCityMaster" EntityType="Self.tblCityMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblDietMaster" EntityType="Self.tblDietMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblGenderMaster" EntityType="Self.tblGenderMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHeightMaster" EntityType="Self.tblHeightMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMembers" EntityType="Self.tblMembers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMotherTongueMaster" EntityType="Self.tblMotherTongueMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblReligionMaster" EntityType="Self.tblReligionMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSkinToneMaster" EntityType="Self.tblSkinToneMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblMembers_tblAnnualIncomeMaster" Association="Self.FK_tblMembers_tblAnnualIncomeMaster">
+            <End Role="tblAnnualIncomeMaster" EntitySet="tblAnnualIncomeMaster" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblBodyTypeMaster" Association="Self.FK_tblMembers_tblBodyTypeMaster">
+            <End Role="tblBodyTypeMaster" EntitySet="tblBodyTypeMaster" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblBodyWeightMaster" Association="Self.FK_tblMembers_tblBodyWeightMaster">
+            <End Role="tblBodyWeightMaster" EntitySet="tblBodyWeightMaster" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblCasteMaster" Association="Self.FK_tblMembers_tblCasteMaster">
+            <End Role="tblCasteMaster" EntitySet="tblCasteMaster" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblCityMaster" Association="Self.FK_tblMembers_tblCityMaster">
+            <End Role="tblCityMaster" EntitySet="tblCityMaster" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblDietMaster" Association="Self.FK_tblMembers_tblDietMaster">
+            <End Role="tblDietMaster" EntitySet="tblDietMaster" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblGenderMaster" Association="Self.FK_tblMembers_tblGenderMaster">
+            <End Role="tblGenderMaster" EntitySet="tblGenderMaster" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblHeightMaster" Association="Self.FK_tblMembers_tblHeightMaster">
+            <End Role="tblHeightMaster" EntitySet="tblHeightMaster" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblMotherTongueMaster" Association="Self.FK_tblMembers_tblMotherTongueMaster">
+            <End Role="tblMotherTongueMaster" EntitySet="tblMotherTongueMaster" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblReligionMaster" Association="Self.FK_tblMembers_tblReligionMaster">
+            <End Role="tblReligionMaster" EntitySet="tblReligionMaster" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblSkinToneMaster" Association="Self.FK_tblMembers_tblSkinToneMaster">
+            <End Role="tblSkinToneMaster" EntitySet="tblSkinToneMaster" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyMatrimonyDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblCasteMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CasteName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMembers" Relationship="Self.FK_tblMembers_tblCasteMaster" FromRole="tblCasteMaster" ToRole="tblMembers" />
+        </EntityType>
+        <EntityType Name="tblCityMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblMembers" Relationship="Self.FK_tblMembers_tblCityMaster" FromRole="tblCityMaster" ToRole="tblMembers" />
+        </EntityType>
+        <EntityType Name="tblGenderMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblMembers" Relationship="Self.FK_tblMembers_tblGenderMaster" FromRole="tblGenderMaster" ToRole="tblMembers" />
+        </EntityType>
+        <EntityType Name="tblHeightMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Height" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblMembers" Relationship="Self.FK_tblMembers_tblHeightMaster" FromRole="tblHeightMaster" ToRole="tblMembers" />
+        </EntityType>
+        <EntityType Name="tblMember">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="MobileNo" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="ReligionId" Type="Int32" Nullable="false" />
+          <Property Name="HeightId" Type="Int32" Nullable="false" />
+          <Property Name="MotherTongueId" Type="Int32" Nullable="false" />
+          <Property Name="CasteId" Type="Int32" Nullable="false" />
+          <Property Name="GenderId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblCasteMaster" Relationship="Self.FK_tblMembers_tblCasteMaster" FromRole="tblMembers" ToRole="tblCasteMaster" />
+          <NavigationProperty Name="tblCityMaster" Relationship="Self.FK_tblMembers_tblCityMaster" FromRole="tblMembers" ToRole="tblCityMaster" />
+          <NavigationProperty Name="tblGenderMaster" Relationship="Self.FK_tblMembers_tblGenderMaster" FromRole="tblMembers" ToRole="tblGenderMaster" />
+          <NavigationProperty Name="tblHeightMaster" Relationship="Self.FK_tblMembers_tblHeightMaster" FromRole="tblMembers" ToRole="tblHeightMaster" />
+          <NavigationProperty Name="tblMotherTongueMaster" Relationship="Self.FK_tblMembers_tblMotherTongueMaster" FromRole="tblMembers" ToRole="tblMotherTongueMaster" />
+          <NavigationProperty Name="tblReligionMaster" Relationship="Self.FK_tblMembers_tblReligionMaster" FromRole="tblMembers" ToRole="tblReligionMaster" />
+          <Property Name="SkinToneId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblSkinToneMaster" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblSkinToneMaster" FromRole="tblMember" ToRole="tblSkinToneMaster" />
+          <Property Name="BodyTypeId" Type="Int32" />
+          <Property Name="BodyWeightId" Type="Int32" />
+          <Property Name="DietId" Type="Int32" />
+          <Property Name="Drink" Type="Boolean" />
+          <Property Name="Smoke" Type="Boolean" />
+          <Property Name="Education" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AnnualIncomeId" Type="Int32" Nullable="false" />
+          <Property Name="Occupation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hobbies" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AboutMyself" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblAnnualIncomeMaster" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblAnnualIncomeMaster" FromRole="tblMember" ToRole="tblAnnualIncomeMaster" />
+          <NavigationProperty Name="tblBodyTypeMaster" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblBodyTypeMaster" FromRole="tblMember" ToRole="tblBodyTypeMaster" />
+          <NavigationProperty Name="tblBodyWeightMaster" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblBodyWeightMaster" FromRole="tblMember" ToRole="tblBodyWeightMaster" />
+          <NavigationProperty Name="tblDietMaster" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblDietMaster" FromRole="tblMember" ToRole="tblDietMaster" />
+        </EntityType>
+        <EntityType Name="tblMotherTongueMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MotherTongue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblMembers" Relationship="Self.FK_tblMembers_tblMotherTongueMaster" FromRole="tblMotherTongueMaster" ToRole="tblMembers" />
+        </EntityType>
+        <EntityType Name="tblReligionMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReligionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblMembers" Relationship="Self.FK_tblMembers_tblReligionMaster" FromRole="tblReligionMaster" ToRole="tblMembers" />
+        </EntityType>
+        <Association Name="FK_tblMembers_tblCasteMaster">
+          <End Role="tblCasteMaster" Type="Self.tblCasteMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCasteMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="CasteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblCityMaster">
+          <End Role="tblCityMaster" Type="Self.tblCityMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCityMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblGenderMaster">
+          <End Role="tblGenderMaster" Type="Self.tblGenderMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGenderMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblHeightMaster">
+          <End Role="tblHeightMaster" Type="Self.tblHeightMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHeightMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="HeightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblMotherTongueMaster">
+          <End Role="tblMotherTongueMaster" Type="Self.tblMotherTongueMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMotherTongueMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="MotherTongueId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblReligionMaster">
+          <End Role="tblReligionMaster" Type="Self.tblReligionMaster" Multiplicity="1" />
+          <End Role="tblMembers" Type="Self.tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblReligionMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="ReligionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MyMatrimonyDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCasteMasters" EntityType="Self.tblCasteMaster" />
+          <EntitySet Name="tblCityMasters" EntityType="Self.tblCityMaster" />
+          <EntitySet Name="tblGenderMasters" EntityType="Self.tblGenderMaster" />
+          <EntitySet Name="tblHeightMasters" EntityType="Self.tblHeightMaster" />
+          <EntitySet Name="tblMembers" EntityType="Self.tblMember" />
+          <EntitySet Name="tblMotherTongueMasters" EntityType="Self.tblMotherTongueMaster" />
+          <EntitySet Name="tblReligionMasters" EntityType="Self.tblReligionMaster" />
+          <AssociationSet Name="FK_tblMembers_tblCasteMaster" Association="Self.FK_tblMembers_tblCasteMaster">
+            <End Role="tblCasteMaster" EntitySet="tblCasteMasters" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblCityMaster" Association="Self.FK_tblMembers_tblCityMaster">
+            <End Role="tblCityMaster" EntitySet="tblCityMasters" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblGenderMaster" Association="Self.FK_tblMembers_tblGenderMaster">
+            <End Role="tblGenderMaster" EntitySet="tblGenderMasters" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblHeightMaster" Association="Self.FK_tblMembers_tblHeightMaster">
+            <End Role="tblHeightMaster" EntitySet="tblHeightMasters" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblMotherTongueMaster" Association="Self.FK_tblMembers_tblMotherTongueMaster">
+            <End Role="tblMotherTongueMaster" EntitySet="tblMotherTongueMasters" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblReligionMaster" Association="Self.FK_tblMembers_tblReligionMaster">
+            <End Role="tblReligionMaster" EntitySet="tblReligionMasters" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <FunctionImport Name="spGetMemberById" ReturnType="Collection(MyMatrimonyDBModel.spGetMemberById_Result)">
+          <Parameter Name="MemberId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tblSkinToneMasters" EntityType="MyMatrimonyDBModel.tblSkinToneMaster" />
+          <AssociationSet Name="FK_tblMembers_tblSkinToneMaster" Association="MyMatrimonyDBModel.FK_tblMembers_tblSkinToneMaster">
+            <End Role="tblSkinToneMaster" EntitySet="tblSkinToneMasters" />
+            <End Role="tblMember" EntitySet="tblMembers" />
+          </AssociationSet>
+          <EntitySet Name="tblAnnualIncomeMasters" EntityType="MyMatrimonyDBModel.tblAnnualIncomeMaster" />
+          <EntitySet Name="tblBodyTypeMasters" EntityType="MyMatrimonyDBModel.tblBodyTypeMaster" />
+          <EntitySet Name="tblBodyWeightMasters" EntityType="MyMatrimonyDBModel.tblBodyWeightMaster" />
+          <EntitySet Name="tblDietMasters" EntityType="MyMatrimonyDBModel.tblDietMaster" />
+          <AssociationSet Name="FK_tblMembers_tblAnnualIncomeMaster" Association="MyMatrimonyDBModel.FK_tblMembers_tblAnnualIncomeMaster">
+            <End Role="tblAnnualIncomeMaster" EntitySet="tblAnnualIncomeMasters" />
+            <End Role="tblMember" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblBodyTypeMaster" Association="MyMatrimonyDBModel.FK_tblMembers_tblBodyTypeMaster">
+            <End Role="tblBodyTypeMaster" EntitySet="tblBodyTypeMasters" />
+            <End Role="tblMember" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblBodyWeightMaster" Association="MyMatrimonyDBModel.FK_tblMembers_tblBodyWeightMaster">
+            <End Role="tblBodyWeightMaster" EntitySet="tblBodyWeightMasters" />
+            <End Role="tblMember" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblDietMaster" Association="MyMatrimonyDBModel.FK_tblMembers_tblDietMaster">
+            <End Role="tblDietMaster" EntitySet="tblDietMasters" />
+            <End Role="tblMember" EntitySet="tblMembers" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="spGetMemberById_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" />
+          <Property Type="DateTime" Name="DateOfBirth" Nullable="false" />
+          <Property Type="Decimal" Name="MobileNo" Nullable="false" Precision="10" Scale="0" />
+          <Property Type="String" Name="CityName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Height" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="ReligionName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MotherTongue" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="CasteName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <EntityType Name="tblSkinToneMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SkinTone" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMembers" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblSkinToneMaster" FromRole="tblSkinToneMaster" ToRole="tblMember" />
+        </EntityType>
+        <Association Name="FK_tblMembers_tblSkinToneMaster">
+          <End Type="MyMatrimonyDBModel.tblSkinToneMaster" Role="tblSkinToneMaster" Multiplicity="1" />
+          <End Type="MyMatrimonyDBModel.tblMember" Role="tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSkinToneMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMember">
+              <PropertyRef Name="SkinToneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblAnnualIncomeMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnnualIncome" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMembers" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblAnnualIncomeMaster" FromRole="tblAnnualIncomeMaster" ToRole="tblMember" />
+        </EntityType>
+        <EntityType Name="tblBodyTypeMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BodyType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMembers" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblBodyTypeMaster" FromRole="tblBodyTypeMaster" ToRole="tblMember" />
+        </EntityType>
+        <EntityType Name="tblBodyWeightMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BodyWeight" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
+          <NavigationProperty Name="tblMembers" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblBodyWeightMaster" FromRole="tblBodyWeightMaster" ToRole="tblMember" />
+        </EntityType>
+        <EntityType Name="tblDietMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Diet" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMembers" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblDietMaster" FromRole="tblDietMaster" ToRole="tblMember" />
+        </EntityType>
+        <Association Name="FK_tblMembers_tblAnnualIncomeMaster">
+          <End Type="MyMatrimonyDBModel.tblAnnualIncomeMaster" Role="tblAnnualIncomeMaster" Multiplicity="1" />
+          <End Type="MyMatrimonyDBModel.tblMember" Role="tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAnnualIncomeMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMember">
+              <PropertyRef Name="AnnualIncomeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblBodyTypeMaster">
+          <End Type="MyMatrimonyDBModel.tblBodyTypeMaster" Role="tblBodyTypeMaster" Multiplicity="0..1" />
+          <End Type="MyMatrimonyDBModel.tblMember" Role="tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBodyTypeMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMember">
+              <PropertyRef Name="BodyTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblBodyWeightMaster">
+          <End Type="MyMatrimonyDBModel.tblBodyWeightMaster" Role="tblBodyWeightMaster" Multiplicity="0..1" />
+          <End Type="MyMatrimonyDBModel.tblMember" Role="tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBodyWeightMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMember">
+              <PropertyRef Name="BodyWeightId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMembers_tblDietMaster">
+          <End Type="MyMatrimonyDBModel.tblDietMaster" Role="tblDietMaster" Multiplicity="0..1" />
+          <End Type="MyMatrimonyDBModel.tblMember" Role="tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblDietMaster">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMember">
+              <PropertyRef Name="DietId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyMatrimonyDBModelStoreContainer" CdmEntityContainer="MyMatrimonyDBEntities">
+          <EntitySetMapping Name="tblCasteMasters">
+            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblCasteMaster">
+              <MappingFragment StoreEntitySet="tblCasteMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CasteName" ColumnName="CasteName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCityMasters">
+            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblCityMaster">
+              <MappingFragment StoreEntitySet="tblCityMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGenderMasters">
+            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblGenderMaster">
+              <MappingFragment StoreEntitySet="tblGenderMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHeightMasters">
+            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblHeightMaster">
+              <MappingFragment StoreEntitySet="tblHeightMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMembers">
+            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblMember">
+              <MappingFragment StoreEntitySet="tblMembers">
+                <ScalarProperty Name="AboutMyself" ColumnName="AboutMyself" />
+                <ScalarProperty Name="Hobbies" ColumnName="Hobbies" />
+                <ScalarProperty Name="Occupation" ColumnName="Occupation" />
+                <ScalarProperty Name="AnnualIncomeId" ColumnName="AnnualIncomeId" />
+                <ScalarProperty Name="Education" ColumnName="Education" />
+                <ScalarProperty Name="Smoke" ColumnName="Smoke" />
+                <ScalarProperty Name="Drink" ColumnName="Drink" />
+                <ScalarProperty Name="DietId" ColumnName="DietId" />
+                <ScalarProperty Name="BodyWeightId" ColumnName="BodyWeightId" />
+                <ScalarProperty Name="BodyTypeId" ColumnName="BodyTypeId" />
+                <ScalarProperty Name="SkinToneId" ColumnName="SkinToneId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="ReligionId" ColumnName="ReligionId" />
+                <ScalarProperty Name="HeightId" ColumnName="HeightId" />
+                <ScalarProperty Name="MotherTongueId" ColumnName="MotherTongueId" />
+                <ScalarProperty Name="CasteId" ColumnName="CasteId" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMotherTongueMasters">
+            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblMotherTongueMaster">
+              <MappingFragment StoreEntitySet="tblMotherTongueMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="MotherTongue" ColumnName="MotherTongue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReligionMasters">
+            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblReligionMaster">
+              <MappingFragment StoreEntitySet="tblReligionMaster">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ReligionName" ColumnName="ReligionName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetMemberById" FunctionName="MyMatrimonyDBModel.Store.spGetMemberById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MyMatrimonyDBModel.spGetMemberById_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="ReligionName" ColumnName="ReligionName" />
+                <ScalarProperty Name="MotherTongue" ColumnName="MotherTongue" />
+                <ScalarProperty Name="CasteName" ColumnName="CasteName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblSkinToneMasters">
+            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblSkinToneMaster">
+              <MappingFragment StoreEntitySet="tblSkinToneMaster">
+                <ScalarProperty Name="SkinTone" ColumnName="SkinTone" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAnnualIncomeMasters">
+            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblAnnualIncomeMaster">
+              <MappingFragment StoreEntitySet="tblAnnualIncomeMaster">
+                <ScalarProperty Name="AnnualIncome" ColumnName="AnnualIncome" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBodyTypeMasters">
+            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblBodyTypeMaster">
+              <MappingFragment StoreEntitySet="tblBodyTypeMaster">
+                <ScalarProperty Name="BodyType" ColumnName="BodyType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBodyWeightMasters">
+            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblBodyWeightMaster">
+              <MappingFragment StoreEntitySet="tblBodyWeightMaster">
+                <ScalarProperty Name="BodyWeight" ColumnName="BodyWeight" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblDietMasters">
+            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblDietMaster">
+              <MappingFragment StoreEntitySet="tblDietMaster">
+                <ScalarProperty Name="Diet" ColumnName="Diet" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,194 @@
+﻿@model MyMatrimony.Models.tblMember
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>tblMember</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateOfBirth)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MobileNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MobileNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Drink)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Drink)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Smoke)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Smoke)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Education)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Education)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Occupation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Occupation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Hobbies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hobbies)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AboutMyself)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AboutMyself)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblCasteMaster.CasteName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblCasteMaster.CasteName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblCityMaster.CityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblCityMaster.CityName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblGenderMaster.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblGenderMaster.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblHeightMaster.Height)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblHeightMaster.Height)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblMotherTongueMaster.MotherTongue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblMotherTongueMaster.MotherTongue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblReligionMaster.ReligionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblReligionMaster.ReligionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblSkinToneMaster.SkinTone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblSkinToneMaster.SkinTone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblAnnualIncomeMaster.AnnualIncome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblAnnualIncomeMaster.AnnualIncome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblBodyTypeMaster.BodyType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblBodyTypeMaster.BodyType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblBodyWeightMaster.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblBodyWeightMaster.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tblDietMaster.Diet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tblDietMaster.Diet)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

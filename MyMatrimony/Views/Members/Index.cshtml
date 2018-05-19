@@ -1,0 +1,159 @@
+﻿@model IEnumerable<MyMatrimony.Models.tblMember>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateOfBirth)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MobileNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Drink)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Smoke)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Education)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Occupation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hobbies)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AboutMyself)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblCasteMaster.CasteName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblCityMaster.CityName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblGenderMaster.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblHeightMaster.Height)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblMotherTongueMaster.MotherTongue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblReligionMaster.ReligionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblSkinToneMaster.SkinTone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblAnnualIncomeMaster.AnnualIncome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblBodyTypeMaster.BodyType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblBodyWeightMaster.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tblDietMaster.Diet)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateOfBirth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MobileNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Drink)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Smoke)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Education)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Occupation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hobbies)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AboutMyself)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblCasteMaster.CasteName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblCityMaster.CityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblGenderMaster.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblHeightMaster.Height)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblMotherTongueMaster.MotherTongue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblReligionMaster.ReligionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblSkinToneMaster.SkinTone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblAnnualIncomeMaster.AnnualIncome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblBodyTypeMaster.BodyType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblBodyWeightMaster.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tblDietMaster.Diet)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

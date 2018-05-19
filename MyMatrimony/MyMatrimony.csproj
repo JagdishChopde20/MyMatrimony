@@ -46,10 +46,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -149,8 +157,64 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyMatrimonyModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyMatrimonyModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyMatrimonyModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyMatrimonyModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyMatrimonyModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MyPartialClasses.cs" />
+    <Compile Include="Models\spGetMemberById_Result.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblAnnualIncomeMaster.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblBodyTypeMaster.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblBodyWeightMaster.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblCasteMaster.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblCityMaster.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblDietMaster.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblGenderMaster.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblHeightMaster.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblMember.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblMotherTongueMaster.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblReligionMaster.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSkinToneMaster.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -173,10 +237,27 @@
     <Content Include="Images\BridesImages\164100335-bride-wallpapers.jpg" />
     <Content Include="Images\BridesImages\164100351-bride-wallpapers.jpg" />
     <Content Include="Images\BridesImages\164100395-bride-wallpapers.jpg" />
+    <Content Include="Models\MyMatrimonyModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyMatrimonyModel.edmx</DependentUpon>
+      <LastGenOutput>MyMatrimonyModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\MyMatrimonyModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyMatrimonyModel.edmx</DependentUpon>
+      <LastGenOutput>MyMatrimonyModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\MyMatrimonyModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MyMatrimonyModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\MyMatrimonyModel.edmx.diagram">
+      <DependentUpon>MyMatrimonyModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -203,10 +284,13 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Members\Create.cshtml" />
+    <Content Include="Views\Members\Delete.cshtml" />
+    <Content Include="Views\Members\Details.cshtml" />
+    <Content Include="Views\Members\Edit.cshtml" />
+    <Content Include="Views\Members\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -219,6 +303,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
