@@ -37,8 +37,8 @@ namespace MyMatrimony.Models
         public virtual DbSet<tblSkinToneMaster> tblSkinToneMasters { get; set; }
         public virtual DbSet<tblAnnualIncomeMaster> tblAnnualIncomeMasters { get; set; }
         public virtual DbSet<tblBodyTypeMaster> tblBodyTypeMasters { get; set; }
-        public virtual DbSet<tblBodyWeightMaster> tblBodyWeightMasters { get; set; }
         public virtual DbSet<tblDietMaster> tblDietMasters { get; set; }
+        public virtual DbSet<tblZodiacSign> tblZodiacSigns { get; set; }
     
         public virtual ObjectResult<spGetMemberById_Result> spGetMemberById(Nullable<int> memberId)
         {

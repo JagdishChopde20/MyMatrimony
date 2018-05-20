@@ -28,7 +28,6 @@ namespace MyMatrimony.Models
         public int GenderId { get; set; }
         public int SkinToneId { get; set; }
         public Nullable<int> BodyTypeId { get; set; }
-        public Nullable<int> BodyWeightId { get; set; }
         public Nullable<int> DietId { get; set; }
         public Nullable<bool> Drink { get; set; }
         public Nullable<bool> Smoke { get; set; }
@@ -37,6 +36,8 @@ namespace MyMatrimony.Models
         public string Occupation { get; set; }
         public string Hobbies { get; set; }
         public string AboutMyself { get; set; }
+        public Nullable<int> ZodiacSignId { get; set; }
+        public Nullable<int> BodyWeight { get; set; }
     
         public virtual tblCasteMaster tblCasteMaster { get; set; }
         public virtual tblCityMaster tblCityMaster { get; set; }
@@ -47,7 +48,7 @@ namespace MyMatrimony.Models
         public virtual tblSkinToneMaster tblSkinToneMaster { get; set; }
         public virtual tblAnnualIncomeMaster tblAnnualIncomeMaster { get; set; }
         public virtual tblBodyTypeMaster tblBodyTypeMaster { get; set; }
-        public virtual tblBodyWeightMaster tblBodyWeightMaster { get; set; }
         public virtual tblDietMaster tblDietMaster { get; set; }
+        public virtual tblZodiacSign tblZodiacSign { get; set; }
     }
 }

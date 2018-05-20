@@ -19,13 +19,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BodyType" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <EntityType Name="tblBodyWeightMaster">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="BodyWeight" Type="numeric" Precision="2" Scale="0" Nullable="false" />
-        </EntityType>
         <EntityType Name="tblCasteMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -79,7 +72,7 @@
           <Property Name="GenderId" Type="int" Nullable="false" />
           <Property Name="SkinToneId" Type="int" Nullable="false" />
           <Property Name="BodyTypeId" Type="int" />
-          <Property Name="BodyWeightId" Type="int" />
+          <Property Name="BodyWeight" Type="int" />
           <Property Name="DietId" Type="int" />
           <Property Name="Drink" Type="bit" />
           <Property Name="Smoke" Type="bit" />
@@ -88,6 +81,7 @@
           <Property Name="Occupation" Type="nvarchar" MaxLength="50" />
           <Property Name="Hobbies" Type="nvarchar" MaxLength="500" />
           <Property Name="AboutMyself" Type="nvarchar" MaxLength="1000" />
+          <Property Name="ZodiacSignId" Type="int" />
         </EntityType>
         <EntityType Name="tblMotherTongueMaster">
           <Key>
@@ -110,6 +104,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SkinTone" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblZodiacSign">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ZodiacSign" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <Association Name="FK_tblMembers_tblAnnualIncomeMaster">
           <End Role="tblAnnualIncomeMaster" Type="Self.tblAnnualIncomeMaster" Multiplicity="1" />
           <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
@@ -131,18 +132,6 @@
             </Principal>
             <Dependent Role="tblMembers">
               <PropertyRef Name="BodyTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblMembers_tblBodyWeightMaster">
-          <End Role="tblBodyWeightMaster" Type="Self.tblBodyWeightMaster" Multiplicity="0..1" />
-          <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblBodyWeightMaster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblMembers">
-              <PropertyRef Name="BodyWeightId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -242,13 +231,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_tblMembers_tblZodiacSign">
+          <End Role="tblZodiacSign" Type="Self.tblZodiacSign" Multiplicity="0..1" />
+          <End Role="tblMembers" Type="Self.tblMembers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblZodiacSign">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMembers">
+              <PropertyRef Name="ZodiacSignId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="spGetMemberById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MemberId" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="MyMatrimonyDBModelStoreContainer">
           <EntitySet Name="tblAnnualIncomeMaster" EntityType="Self.tblAnnualIncomeMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblBodyTypeMaster" EntityType="Self.tblBodyTypeMaster" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblBodyWeightMaster" EntityType="Self.tblBodyWeightMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCasteMaster" EntityType="Self.tblCasteMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCityMaster" EntityType="Self.tblCityMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblDietMaster" EntityType="Self.tblDietMaster" Schema="dbo" store:Type="Tables" />
@@ -258,16 +258,13 @@
           <EntitySet Name="tblMotherTongueMaster" EntityType="Self.tblMotherTongueMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblReligionMaster" EntityType="Self.tblReligionMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblSkinToneMaster" EntityType="Self.tblSkinToneMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblZodiacSign" EntityType="Self.tblZodiacSign" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_tblMembers_tblAnnualIncomeMaster" Association="Self.FK_tblMembers_tblAnnualIncomeMaster">
             <End Role="tblAnnualIncomeMaster" EntitySet="tblAnnualIncomeMaster" />
             <End Role="tblMembers" EntitySet="tblMembers" />
           </AssociationSet>
           <AssociationSet Name="FK_tblMembers_tblBodyTypeMaster" Association="Self.FK_tblMembers_tblBodyTypeMaster">
             <End Role="tblBodyTypeMaster" EntitySet="tblBodyTypeMaster" />
-            <End Role="tblMembers" EntitySet="tblMembers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblMembers_tblBodyWeightMaster" Association="Self.FK_tblMembers_tblBodyWeightMaster">
-            <End Role="tblBodyWeightMaster" EntitySet="tblBodyWeightMaster" />
             <End Role="tblMembers" EntitySet="tblMembers" />
           </AssociationSet>
           <AssociationSet Name="FK_tblMembers_tblCasteMaster" Association="Self.FK_tblMembers_tblCasteMaster">
@@ -300,6 +297,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_tblMembers_tblSkinToneMaster" Association="Self.FK_tblMembers_tblSkinToneMaster">
             <End Role="tblSkinToneMaster" EntitySet="tblSkinToneMaster" />
+            <End Role="tblMembers" EntitySet="tblMembers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMembers_tblZodiacSign" Association="Self.FK_tblMembers_tblZodiacSign">
+            <End Role="tblZodiacSign" EntitySet="tblZodiacSign" />
             <End Role="tblMembers" EntitySet="tblMembers" />
           </AssociationSet>
         </EntityContainer>
@@ -364,7 +365,6 @@
           <Property Name="SkinToneId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tblSkinToneMaster" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblSkinToneMaster" FromRole="tblMember" ToRole="tblSkinToneMaster" />
           <Property Name="BodyTypeId" Type="Int32" />
-          <Property Name="BodyWeightId" Type="Int32" />
           <Property Name="DietId" Type="Int32" />
           <Property Name="Drink" Type="Boolean" />
           <Property Name="Smoke" Type="Boolean" />
@@ -375,8 +375,10 @@
           <Property Name="AboutMyself" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblAnnualIncomeMaster" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblAnnualIncomeMaster" FromRole="tblMember" ToRole="tblAnnualIncomeMaster" />
           <NavigationProperty Name="tblBodyTypeMaster" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblBodyTypeMaster" FromRole="tblMember" ToRole="tblBodyTypeMaster" />
-          <NavigationProperty Name="tblBodyWeightMaster" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblBodyWeightMaster" FromRole="tblMember" ToRole="tblBodyWeightMaster" />
           <NavigationProperty Name="tblDietMaster" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblDietMaster" FromRole="tblMember" ToRole="tblDietMaster" />
+          <Property Name="ZodiacSignId" Type="Int32" />
+          <NavigationProperty Name="tblZodiacSign" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblZodiacSign" FromRole="tblMember" ToRole="tblZodiacSign" />
+          <Property Name="BodyWeight" Type="Int32" />
         </EntityType>
         <EntityType Name="tblMotherTongueMaster">
           <Key>
@@ -508,7 +510,6 @@
           </AssociationSet>
           <EntitySet Name="tblAnnualIncomeMasters" EntityType="MyMatrimonyDBModel.tblAnnualIncomeMaster" />
           <EntitySet Name="tblBodyTypeMasters" EntityType="MyMatrimonyDBModel.tblBodyTypeMaster" />
-          <EntitySet Name="tblBodyWeightMasters" EntityType="MyMatrimonyDBModel.tblBodyWeightMaster" />
           <EntitySet Name="tblDietMasters" EntityType="MyMatrimonyDBModel.tblDietMaster" />
           <AssociationSet Name="FK_tblMembers_tblAnnualIncomeMaster" Association="MyMatrimonyDBModel.FK_tblMembers_tblAnnualIncomeMaster">
             <End Role="tblAnnualIncomeMaster" EntitySet="tblAnnualIncomeMasters" />
@@ -518,12 +519,13 @@
             <End Role="tblBodyTypeMaster" EntitySet="tblBodyTypeMasters" />
             <End Role="tblMember" EntitySet="tblMembers" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblMembers_tblBodyWeightMaster" Association="MyMatrimonyDBModel.FK_tblMembers_tblBodyWeightMaster">
-            <End Role="tblBodyWeightMaster" EntitySet="tblBodyWeightMasters" />
-            <End Role="tblMember" EntitySet="tblMembers" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblMembers_tblDietMaster" Association="MyMatrimonyDBModel.FK_tblMembers_tblDietMaster">
             <End Role="tblDietMaster" EntitySet="tblDietMasters" />
+            <End Role="tblMember" EntitySet="tblMembers" />
+          </AssociationSet>
+          <EntitySet Name="tblZodiacSigns" EntityType="MyMatrimonyDBModel.tblZodiacSign" />
+          <AssociationSet Name="FK_tblMembers_tblZodiacSign" Association="MyMatrimonyDBModel.FK_tblMembers_tblZodiacSign">
+            <End Role="tblZodiacSign" EntitySet="tblZodiacSigns" />
             <End Role="tblMember" EntitySet="tblMembers" />
           </AssociationSet>
         </EntityContainer>
@@ -575,14 +577,6 @@
           <Property Name="BodyType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tblMembers" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblBodyTypeMaster" FromRole="tblBodyTypeMaster" ToRole="tblMember" />
         </EntityType>
-        <EntityType Name="tblBodyWeightMaster">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BodyWeight" Type="Decimal" Nullable="false" Precision="2" Scale="0" />
-          <NavigationProperty Name="tblMembers" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblBodyWeightMaster" FromRole="tblBodyWeightMaster" ToRole="tblMember" />
-        </EntityType>
         <EntityType Name="tblDietMaster">
           <Key>
             <PropertyRef Name="Id" />
@@ -615,18 +609,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblMembers_tblBodyWeightMaster">
-          <End Type="MyMatrimonyDBModel.tblBodyWeightMaster" Role="tblBodyWeightMaster" Multiplicity="0..1" />
-          <End Type="MyMatrimonyDBModel.tblMember" Role="tblMember" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblBodyWeightMaster">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblMember">
-              <PropertyRef Name="BodyWeightId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblMembers_tblDietMaster">
           <End Type="MyMatrimonyDBModel.tblDietMaster" Role="tblDietMaster" Multiplicity="0..1" />
           <End Type="MyMatrimonyDBModel.tblMember" Role="tblMember" Multiplicity="*" />
@@ -636,6 +618,26 @@
             </Principal>
             <Dependent Role="tblMember">
               <PropertyRef Name="DietId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblZodiacSign">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ZodiacSign" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMembers" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblZodiacSign" FromRole="tblZodiacSign" ToRole="tblMember" />
+        </EntityType>
+        <Association Name="FK_tblMembers_tblZodiacSign">
+          <End Type="MyMatrimonyDBModel.tblZodiacSign" Role="tblZodiacSign" Multiplicity="0..1" />
+          <End Type="MyMatrimonyDBModel.tblMember" Role="tblMember" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblZodiacSign">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMember">
+              <PropertyRef Name="ZodiacSignId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -680,6 +682,8 @@
           <EntitySetMapping Name="tblMembers">
             <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblMember">
               <MappingFragment StoreEntitySet="tblMembers">
+                <ScalarProperty Name="BodyWeight" ColumnName="BodyWeight" />
+                <ScalarProperty Name="ZodiacSignId" ColumnName="ZodiacSignId" />
                 <ScalarProperty Name="AboutMyself" ColumnName="AboutMyself" />
                 <ScalarProperty Name="Hobbies" ColumnName="Hobbies" />
                 <ScalarProperty Name="Occupation" ColumnName="Occupation" />
@@ -688,7 +692,6 @@
                 <ScalarProperty Name="Smoke" ColumnName="Smoke" />
                 <ScalarProperty Name="Drink" ColumnName="Drink" />
                 <ScalarProperty Name="DietId" ColumnName="DietId" />
-                <ScalarProperty Name="BodyWeightId" ColumnName="BodyWeightId" />
                 <ScalarProperty Name="BodyTypeId" ColumnName="BodyTypeId" />
                 <ScalarProperty Name="SkinToneId" ColumnName="SkinToneId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -762,18 +765,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblBodyWeightMasters">
-            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblBodyWeightMaster">
-              <MappingFragment StoreEntitySet="tblBodyWeightMaster">
-                <ScalarProperty Name="BodyWeight" ColumnName="BodyWeight" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblDietMasters">
             <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblDietMaster">
               <MappingFragment StoreEntitySet="tblDietMaster">
                 <ScalarProperty Name="Diet" ColumnName="Diet" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblZodiacSigns">
+            <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblZodiacSign">
+              <MappingFragment StoreEntitySet="tblZodiacSign">
+                <ScalarProperty Name="ZodiacSign" ColumnName="ZodiacSign" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

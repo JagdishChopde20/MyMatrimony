@@ -12,16 +12,16 @@ namespace MyMatrimony.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblBodyWeightMaster
+    public partial class tblZodiacSign
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblBodyWeightMaster()
+        public tblZodiacSign()
         {
             this.tblMembers = new HashSet<tblMember>();
         }
     
         public int Id { get; set; }
-        public decimal BodyWeight { get; set; }
+        public string ZodiacSign { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblMember> tblMembers { get; set; }

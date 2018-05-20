@@ -22,12 +22,12 @@
         <AssociationConnector Association="MyMatrimonyDBModel.FK_tblMembers_tblSkinToneMaster" />
         <EntityTypeShape EntityType="MyMatrimonyDBModel.tblAnnualIncomeMaster" Width="1.5" PointX="0.75" PointY="22.375" />
         <EntityTypeShape EntityType="MyMatrimonyDBModel.tblBodyTypeMaster" Width="1.5" PointX="0.75" PointY="17.625" />
-        <EntityTypeShape EntityType="MyMatrimonyDBModel.tblBodyWeightMaster" Width="1.5" PointX="0.75" PointY="20" />
         <EntityTypeShape EntityType="MyMatrimonyDBModel.tblDietMaster" Width="1.5" PointX="5.375" PointY="0.875" />
         <AssociationConnector Association="MyMatrimonyDBModel.FK_tblMembers_tblAnnualIncomeMaster" />
         <AssociationConnector Association="MyMatrimonyDBModel.FK_tblMembers_tblBodyTypeMaster" />
-        <AssociationConnector Association="MyMatrimonyDBModel.FK_tblMembers_tblBodyWeightMaster" />
         <AssociationConnector Association="MyMatrimonyDBModel.FK_tblMembers_tblDietMaster" />
+        <EntityTypeShape EntityType="MyMatrimonyDBModel.tblZodiacSign" Width="1.5" PointX="5.375" PointY="3.875" />
+        <AssociationConnector Association="MyMatrimonyDBModel.FK_tblMembers_tblZodiacSign" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

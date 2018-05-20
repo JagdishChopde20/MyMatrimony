@@ -186,9 +186,6 @@
     <Compile Include="Models\tblBodyTypeMaster.cs">
       <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\tblBodyWeightMaster.cs">
-      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\tblCasteMaster.cs">
       <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
     </Compile>
@@ -214,6 +211,9 @@
       <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblSkinToneMaster.cs">
+      <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblZodiacSign.cs">
       <DependentUpon>MyMatrimonyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
