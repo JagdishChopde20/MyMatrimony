@@ -3,16 +3,16 @@
 @{
     ViewBag.Title = "Create";
 }
-
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        alert('hi');
-        $('.datepicker').datepicker();
+        $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+        $("#datepickr1").datepicker();
     });
 </script>
+
 <h2>Create Profile</h2>
 
 
@@ -115,7 +115,10 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                        @*<div class="" data-provide="datepicker">*@
+                            @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control datepicker", @id = "datepickr1" } })
+                            @*<span class="input-group-addon glyphicon glyphicon-th"></span>*@
+                        @*</div>*@
                         @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
                     </div>
                 </div>
