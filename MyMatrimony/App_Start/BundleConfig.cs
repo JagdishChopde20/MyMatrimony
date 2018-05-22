@@ -11,10 +11,11 @@ namespace MyMatrimony
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                      "~/Content/themes/base/jquery-ui.css",
-                        "~/Scripts/jquery-ui-{version}.js"));
-            
+            //bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+            //            "~/Scripts/jquery-ui-{version}.js"));
+            //bundles.Add(new StyleBundle("~/Content/jqueryuicss").Include(
+            //          "~/Content/themes/base/jquery-ui.min.css", new CssRewriteUrlTransform()));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 

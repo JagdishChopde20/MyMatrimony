@@ -15,7 +15,7 @@ namespace MyMatrimony.Controllers
         private MyMatrimonyDBEntities db = new MyMatrimonyDBEntities();
 
         // GET: Members
-        public ActionResult Index()
+        public ActionResult ListMembers()
         {
             var tblMembers = db.tblMembers.Include(t => t.tblCasteMaster).Include(t => t.tblCityMaster).Include(t => t.tblGenderMaster).Include(t => t.tblHeightMaster).Include(t => t.tblMotherTongueMaster).Include(t => t.tblReligionMaster).Include(t => t.tblSkinToneMaster).Include(t => t.tblAnnualIncomeMaster).Include(t => t.tblBodyTypeMaster).Include(t => t.tblDietMaster);
             return View(tblMembers.ToList());

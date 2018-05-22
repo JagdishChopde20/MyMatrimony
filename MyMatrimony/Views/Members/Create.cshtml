@@ -3,14 +3,14 @@
 @{
     ViewBag.Title = "Create";
 }
-<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
-<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
-
+@*<link href="~/Content/bootstrap-datepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>*@
+@*<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />*@
 <script type="text/javascript">
-    $(document).ready(function () {
-        $.fn.datepicker.defaults.format = "dd/mm/yyyy";
-        $("#datepickr1").datepicker();
-    });
+    //$(document).ready(function () {
+    //    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+    //    $("#datepickr1").datepicker();
+    //});
 </script>
 
 <h2>Create Profile</h2>
@@ -70,7 +70,7 @@
                         @foreach (var radioItem in (IEnumerable<MyMatrimony.Models.tblGenderMaster>)ViewBag.GenderId)
                         {
                             <label class="btn btn-default">
-                                @Html.RadioButtonFor(model => model.GenderId, radioItem.Id, new { @id = "radio" + Guid.NewGuid().ToString() })
+                                @Html.RadioButtonFor(model => model.GenderId, radioItem.Id, new { id="" })
                                 @radioItem.Gender
                             </label>
                         }
@@ -297,13 +297,7 @@
             </div>
         </div>
     </div>
-
-    <div class="input-group date" data-provide="datepicker">
-        <input type="text" class="form-control">
-        <div class="input-group-addon">
-            <span class="glyphicon glyphicon-th"></span>
-        </div>
-    </div>
+    
 }
 
 <div>

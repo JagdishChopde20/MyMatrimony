@@ -31,7 +31,8 @@ namespace MyMatrimony.Models
         public string Name { get; set; }
 
         [Display(Name = "Date Of Birth")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = @"{0:dd/MM/yyyy}" )]
         public System.DateTime DateOfBirth { get; set; }
 
         [Display(Name="Mobile Number")]
