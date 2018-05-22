@@ -1,0 +1,76 @@
+﻿@using MyMatrimony.CustomHtmlHelpers
+@model MyMatrimony.Models.tblMember
+
+<div>
+    <h4 class="badge">@Model.Id</h4>
+
+    <div class="row">
+        <div class="well">
+            <table>
+                <tr>
+                    <td class="visible-xs hidden-sm">
+                        <a href="#" class="thumbnail">
+                            @Html.MyImage("~/Images/BridesImages/164100351-bride-wallpapers.jpg", "290", "250")
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="hidden-xs col-sm-4 col-md-4 col-lg-5">
+                        <a href="#" class="thumbnail">
+                            @Html.MyImage("~/Images/BridesImages/164100351-bride-wallpapers.jpg", "290", "250")
+                        </a>
+                    </td>
+                    <td class="col-sm-8 col-md-8 col-lg-7">
+                        <h3 style="margin-top:0px">
+                            @Html.DisplayFor(model => model.Name)
+                        </h3>
+                        <table class="table table-striped" style="background-color:transparent">
+                            <tr>
+                                <td>@Html.DisplayFor(model => model.DateOfBirth), @Html.DisplayFor(model => model.tblHeightMaster.Height)</td>
+                                <td>@Html.DisplayFor(model => model.Education)</td>
+                            </tr>
+                            <tr>
+                                <td>@Html.DisplayFor(model => model.tblCityMaster.CityName)</td>
+                                <td>@Html.DisplayFor(model => model.Occupation)</td>
+                            </tr>
+                            <tr>
+                                <td>@Html.DisplayFor(model => model.tblReligionMaster.ReligionName), @Html.DisplayFor(model => model.tblCasteMaster.CasteName)</td>
+                                <td>@Html.DisplayFor(model => model.tblAnnualIncomeMaster.AnnualIncome)</td>
+                            </tr>
+                            <tr>
+                                <td>@Html.DisplayFor(model => model.tblMotherTongueMaster.MotherTongue)</td>
+                                <td>@Html.DisplayFor(model => model.tblDietMaster.Diet)</td>
+                            </tr>
+                            <tr>
+                                <td>@Html.DisplayFor(model => model.tblBodyTypeMaster.BodyType), @Html.DisplayFor(model => model.BodyWeight) Kgs</td>
+                                <td>@Html.DisplayFor(model => model.tblSkinToneMaster.SkinTone)</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" colspan="2">
+                        <button type="button" class="btn btn-danger btn-outline">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span> Shortlist
+                        </button>
+                        <button type="button" class="btn btn-success btn-outline">
+                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Chat
+                        </button>
+                    <button type="button" class="btn btn-warning btn-outline">
+                            <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span> View Contact
+                        </button>
+                    <button type="button" class="btn btn-primary btn-outline">
+                            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Send Interest
+                        </button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+
+</div>
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
