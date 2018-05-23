@@ -15,12 +15,12 @@ namespace MyMatrimony.CustomHtmlHelpers
 
             // Add "src" attribute
             tb.Attributes.Add("src", VirtualPathUtility.ToAbsolute(src));
-            
+
             // Add "height" attribute
             //tb.Attributes.Add("height", height);
             // Add "width" attribute
             //tb.Attributes.Add("width", width);
-
+            
             // Add "alt" attribute
             tb.Attributes.Add("alt", alt);
 
