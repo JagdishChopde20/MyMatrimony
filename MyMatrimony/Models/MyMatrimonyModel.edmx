@@ -63,7 +63,7 @@
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="DateOfBirth" Type="date" Nullable="false" />
-          <Property Name="MobileNo" Type="numeric" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="CityId" Type="int" Nullable="false" />
           <Property Name="ReligionId" Type="int" Nullable="false" />
           <Property Name="HeightId" Type="int" Nullable="false" />
@@ -349,7 +349,7 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="MobileNo" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="MobileNo" Type="String" Nullable="false" />
           <Property Name="CityId" Type="Int32" Nullable="false" />
           <Property Name="ReligionId" Type="Int32" Nullable="false" />
           <Property Name="HeightId" Type="Int32" Nullable="false" />

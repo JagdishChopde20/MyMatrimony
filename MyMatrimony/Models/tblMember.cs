@@ -19,7 +19,7 @@ namespace MyMatrimony.Models
         public string Password { get; set; }
         public string Name { get; set; }
         public System.DateTime DateOfBirth { get; set; }
-        public decimal MobileNo { get; set; }
+        public string MobileNo { get; set; }
         public int CityId { get; set; }
         public int ReligionId { get; set; }
         public int HeightId { get; set; }

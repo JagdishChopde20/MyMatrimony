@@ -36,8 +36,9 @@ namespace MyMatrimony.Models
         public System.DateTime DateOfBirth { get; set; }
 
         [Display(Name="Mobile Number")]
+        [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\d{10}$", ErrorMessage = "Mobile Number must of 10 digits number only")]
-        public decimal MobileNo { get; set; }
+        public string MobileNo { get; set; }
 
         [Display(Name= "City")]
         public int CityId { get; set; }

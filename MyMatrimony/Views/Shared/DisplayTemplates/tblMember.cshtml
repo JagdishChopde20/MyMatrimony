@@ -2,9 +2,35 @@
 @model MyMatrimony.Models.tblMember
 
 <script type="text/javascript">
-    $('#btnChatPopever').popover({
-        trigger: 'focus'
-    })
+    $(document).ready(function () {
+        $("button[value=Shortlist]").off('click').on('click', function () {
+            var btnShortlist = $(this);
+            btnShortlist.toggleClass("btn-outline-danger").toggleClass("btn-danger");
+            var alertShortlist = $("#alertShortlist");
+            if (btnShortlist.hasClass("btn-outline-danger")) {
+                $('#shortlistText').text("removed");
+                
+                alertShortlist.addClass('show');
+                setTimeout(function () {
+                    alertShortlist.removeClass('show');
+                }, 3000);
+            }
+            else {
+                $('#shortlistText').text("added");
+                alertShortlist.addClass('show');
+                
+                setTimeout(function () {
+                    alertShortlist.removeClass('show');
+                }, 3000);
+            }
+        });
+
+        $('[data-toggle="popover"]').popover({
+            trigger: 'focus'
+        });
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
 </script>
 
 <div>
@@ -12,20 +38,20 @@
 
     <div class="row">
         <div class="d-sm-none">
-            @Html.MyImage("~/Images/BridesImages/164100351-bride-wallpapers.jpg", "290", "250", "img-fluid img-thumbnail", "")
+            @Html.MyImage("~/Images/BridesImages/164100351-bride-wallpapers.jpg", "290", "250", "img-fluid img-thumbnail", "max-height:400px")
         </div>
     </div>
 
     <div class="row">
         <div class="d-none d-sm-block col-4">
-            @Html.MyImage("~/Images/BridesImages/164100351-bride-wallpapers.jpg", "290", "250", "img-fluid img-thumbnail", "")
+            @Html.MyImage("~/Images/BridesImages/164100146-bride-wallpapers.jpg", "290", "250", "img-fluid img-thumbnail", "max-height:400px")
         </div>
         <div class="col-sm-8">
             <span class="d-block lead text-capitalize text-truncate" style="font-size:35px">
                 @Html.DisplayFor(model => model.Name)
             </span>
             <small class="float-right text-muted text-truncate">Last Online: 24-05-2018 11:06 PM</small>
-            <table class="table table-sm table-striped table-hover">
+            <table class="table table-sm table-striped table-hover text-capitalize text-truncate">
                 <tr>
                     <td>@Html.DisplayFor(model => model.DateOfBirth), @Html.DisplayFor(model => model.tblHeightMaster.Height)</td>
                     <td>@Html.DisplayFor(model => model.Education)</td>
@@ -48,34 +74,78 @@
                 </tr>
             </table>
         </div>
-
     </div>
+    <div class="row justify-content-end">
+        <div>
+            @using (Html.BeginForm("Details", "Members", new { id = Model.Id }, FormMethod.Post, new { style = "display:inline;" }))
+            {
+                <button type="submit" class="btn btn-outline-info btn-sm" title="View Profile">
+                    <span class="fas fa-address-card" aria-hidden="true"></span> <span class="d-none d-sm-inline">View Profile &raquo;</span>
+                </button>
+            }
 
+            <button type="button" class="btn btn-outline-danger btn-sm" value="Shortlist">
+                <span class="fas fa-star" aria-hidden="true"></span> <span class="d-none d-sm-inline">Shortlist</span>
+            </button>
+            <a class="btn btn-outline-success btn-sm" data-html="true" tabindex="0" data-placement="auto" role="button" data-toggle="popover" data-trigger="focus" title="Chat with <b>@Model.Name</b>" data-content="Only premium members can initiate the chat. Send interest to <b>@Model.Name</b>, if they accept then also you can initiate the chat.">
+                <span class="fas fa-comments" aria-hidden="true"></span> <span class="d-none d-sm-inline">Chat</span>
+            </a>
+            <span data-toggle="tooltip" data-html="true" title="<b class=' text-capitalize'>@Model.Name</b> <em>will get notified that <u>you</u> have viewed their contact details.</em> ">
+                <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#viewContactModal">
+                    <span class="fas fa-phone" aria-hidden="true"></span> <span class="d-none d-sm-inline">View Contact</span>
+                </button>
+            </span>
+            <button type="button" class="btn btn-outline-primary btn-sm">
+                <span class="fas fa-check" aria-hidden="true"></span> <span class="d-none d-sm-inline">Send Interest</span>
+            </button>
+        </div>
+    </div>
 </div>
 
 <!-- Modal - View Contact -->
-@*<div class="modal fade" id="viewContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">
-                        Contact Details - <b>@Model.Name</b>
-
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </h5>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+<div class="modal fade" id="viewContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                    Contact Details - <b>@Model.Name</b>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MobileNo)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.MobileNo)
+                    </dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Get through SMS</button>
             </div>
         </div>
-    </div>*@
+    </div>
+</div>
+
+<!-- Alert - Shortlist -->
+<div id="alertShortlist" class="alert alert-danger alert-dismissible fade" role="alert" style="position:fixed; top:20%; left:30%; z-index:999;">
+    <h3>Shortlist</h3>
+    <strong class='text-capitalize'>@Model.Name</strong> successfully <strong id="shortlistText">added</strong> to your shortlist.
+    @*<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>*@
+</div>
 
 @*<p>
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |

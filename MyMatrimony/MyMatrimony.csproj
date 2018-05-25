@@ -277,6 +277,7 @@
     <Content Include="Images\BridesImages\164100335-bride-wallpapers.jpg" />
     <Content Include="Images\BridesImages\164100351-bride-wallpapers.jpg" />
     <Content Include="Images\BridesImages\164100395-bride-wallpapers.jpg" />
+    <Content Include="Images\BridesImages\Marshmello.jpg" />
     <Content Include="Models\MyMatrimonyModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>MyMatrimonyModel.edmx</DependentUpon>
