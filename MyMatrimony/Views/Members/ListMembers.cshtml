@@ -6,7 +6,99 @@
     //Model = Model.Take(5);
 }
 
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        // Shortlist button click
+        $("button[value=Shortlist]").off('click').on('click', function () {
+            var btnShortlist = $(this);
+            var spanShortlist = $(this).children("span[data-myvalue=Shortlist]");
+    
+            // Change Shortlist button style outline/solid
+            btnShortlist.toggleClass("btn-outline-danger").toggleClass("btn-danger");
+
+            // Alert object
+            var alertShortlist = $("#alertShortlist");
+            if (btnShortlist.hasClass("btn-outline-danger")) {
+                spanShortlist.text("Shortlist");
+                $('#shortlistText').text("removed from");
+                alertShortlist.children('h3').text('Removed from Shortlist');
+                // Show Alert
+                alertShortlist.parent('div').removeClass('d-none'); 
+                
+                setTimeout(function () {
+                    alertShortlist.parent('div').addClass('d-none');
+                }, 3000);
+            }
+            else {
+                spanShortlist.text("Shortlisted");
+                $('#shortlistText').text("added to");
+                alertShortlist.children('h3').text('Added to Shortlist');
+                // Hide Alert
+                alertShortlist.parent('div').removeClass('d-none'); 
+
+                setTimeout(function () {
+                    alertShortlist.parent('div').addClass('d-none');
+                }, 3000);
+            }
+        });
+
+        $('[data-toggle="popover"]').popover({
+            trigger: 'focus'
+        });
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+
+</script>
+
 <h2>Member List</h2>
 
 @Html.DisplayForModel()
 
+
+<!-- Modal - View Contact -->
+<div class="modal fade" id="viewContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                    Contact Details - <b>@*@Model.Name*@</b>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">...
+                @*<dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MobileNo)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.MobileNo)
+                    </dd>
+                </dl>*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Get through SMS</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Alert - Shortlist -->
+<div class="row justify-content-center d-none">
+    <div id="alertShortlist" class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="position:fixed; top:70%; width:90%; z-index:999;">
+        <h3>Shortlist</h3><hr />
+        <strong id="shortlistUserName" class='text-capitalize'>@*@Model.Name*@</strong>member successfully <strong id="shortlistText">added to</strong> your shortlist.
+        @*<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>*@
+    </div>
+</div>
