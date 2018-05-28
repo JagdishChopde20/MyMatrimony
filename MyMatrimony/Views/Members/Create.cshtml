@@ -25,9 +25,9 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <div class="panel panel-danger">
-            <div class="panel-heading">
-                <h3 class="panel-title">Credentials</h3>
+        <div class="card border-danger mb-3">
+            <div class="card-header text-white bg-danger">
+                Credentials
             </div>
             <div class="panel-body">
                 <div class="form-group">
@@ -53,24 +53,23 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-footer">
+            <div class="card-footer">
                 <small> Note: These credentials will be used to login to your profile. </small>
             </div>
         </div>
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Basic and Essentials</h3>
+        <div class="card border-primary mb-3">
+            <div class="card-header text-white bg-primary">
+                Basic and Essentials
             </div>
             <div class="panel-body">
-
                 <div class="form-group">
                     @Html.LabelFor(model => model.GenderId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10 btn-group btn-group-toggle" data-toggle="buttons">
                         @foreach (var radioItem in (IEnumerable<MyMatrimony.Models.tblGenderMaster>)ViewBag.GenderId)
                         {
-                            <label class="btn btn-default">
-                                @Html.RadioButtonFor(model => model.GenderId, radioItem.Id, new { id="" })
+                            <label class="btn btn-outline-secondary">
+                                @Html.RadioButtonFor(model => model.GenderId, radioItem.Id, new { id="", name="genderOption" })
                                 @radioItem.Gender
                             </label>
                         }
@@ -106,12 +105,11 @@
             </div>
         </div>
 
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <h3 class="panel-title">Personal Identification</h3>
+        <div class="card border-success mb-3">
+            <div class="card-header text-white bg-success">
+                Personal Identification
             </div>
             <div class="panel-body">
-
                 <div class="form-group">
                     @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -158,12 +156,11 @@
             </div>
         </div>
 
-        <div class="panel panel-warning">
-            <div class="panel-heading">
-                <h3 class="panel-title">Religious Background</h3>
+        <div class="card border-warning mb-3">
+            <div class="card-header text-white bg-warning">
+                Religious Background
             </div>
             <div class="panel-body">
-
                 <div class="form-group">
                     @Html.LabelFor(model => model.ReligionId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -198,12 +195,11 @@
             </div>
         </div>
 
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">Lifestyle and Hobbies</h3>
+        <div class="card border-info mb-3">
+            <div class="card-header text-white bg-info">
+                Lifestyle and Hobbies
             </div>
             <div class="panel-body">
-
                 <div class="form-group">
                     @Html.LabelFor(model => model.DietId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -243,9 +239,9 @@
             </div>
         </div>
 
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Education & Career</h3>
+        <div class="card border-secondary mb-3">
+            <div class="card-header text-white bg-secondary">
+                Education & Career
             </div>
             <div class="panel-body">
                 <div class="form-group">
@@ -275,9 +271,9 @@
             </div>
         </div>
 
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <h3 class="panel-title">Personality, Family Details, Career, Partner Expectations etc.</h3>
+        <div class="card border-info mb-3">
+            <div class="card-header text-white bg-info">
+                Personality, Family Details, Career, Partner Expectations etc.
             </div>
             <div class="panel-body">
                 <div class="form-group">
@@ -292,8 +288,8 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-primary btn-lg btn-block" />
-                <input type="reset" value="Reset" class="btn btn-secondary btn-lg btn-block" />
+                <input type="submit" value="Create" class="btn btn-primary btn-lg" />
+                <input type="reset" value="Reset" class="btn btn-secondary btn-lg" />
             </div>
         </div>
     </div>
