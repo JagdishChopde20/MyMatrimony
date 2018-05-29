@@ -6,7 +6,7 @@
         <span class="lead text-capitalize text-truncate">
             @Html.DisplayFor(model => model.Name)
         </span>
-        <small class="float-right text-truncate text-dark">Last Online: 24-05-2018 11:06 PM</small>
+        <small class="float-right text-truncate text-dark">@Html.DisplayNameFor(model => model.LastOnline): @Html.DisplayFor(model => model.LastOnline)</small>
     </div>
 
     <div class="card-body">
@@ -62,14 +62,14 @@
                 </button>
             }
 
-            <button type="button" class="btn btn-outline-danger btn-sm" value="Shortlist">
+            <button type="button" class="btn btn-outline-danger btn-sm" value="Shortlist" name="alertShortlist_@Model.Id">
                 <span class="fas fa-star" aria-hidden="true"></span> <span data-myvalue="Shortlist" class="d-none d-md-inline">Shortlist</span>
             </button>
             <a class="btn btn-outline-success btn-sm" data-html="true" tabindex="0" data-placement="auto" role="button" data-toggle="popover" data-trigger="focus" title="Chat with <b>@Model.Name</b>" data-content="Only premium members can initiate the chat. Send interest to <b>@Model.Name</b>, if they accept then also you can initiate the chat.">
                 <span class="fas fa-comments" aria-hidden="true"></span> <span class="d-none d-md-inline">Chat</span>
             </a>
             <span data-toggle="tooltip" data-html="true" title="<b class=' text-capitalize'>@Model.Name</b> <em>will get notified that <u>you</u> have viewed their contact details.</em> ">
-                <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#viewContactModal">
+                <button type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal" data-target="#viewContactModal_@Model.Id">
                     <span class="fas fa-phone" aria-hidden="true"></span> <span class="d-none d-md-inline">View Contact</span>
                 </button>
             </span>
@@ -84,3 +84,50 @@
         @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
         @Html.ActionLink("Back to List", "Index")
     </p>*@
+
+<!-- Alert - Shortlist -->
+<div class="row justify-content-center d-none">
+    <div id="alertShortlist_@Model.Id" class="alert alert-danger alert-dismissible fade show text-center" role="alert" style="position:fixed; top:70%; width:90%; z-index:999;">
+        <h3>Shortlist</h3><hr />
+        <strong class='text-capitalize'>@Model.Name</strong> successfully <strong id="shortlistText">added to</strong> your shortlist.
+        @*<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>*@
+    </div>
+</div>
+
+<!-- Modal - View Contact -->
+<div class="modal fade" id="viewContactModal_@Model.Id" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                    Contact Details - <b class='text-capitalize text-truncate'>@Model.Name</b>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MobileNo)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.MobileNo)
+                    </dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="alert('Contact details sent to you throgh SMS.');">Get through SMS</button>
+            </div>
+        </div>
+    </div>
+</div>

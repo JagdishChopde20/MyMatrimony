@@ -32,40 +32,40 @@ namespace MyMatrimony.Models
 
         [Display(Name = "Date Of Birth")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = @"{0:dd/MM/yyyy}" )]
+        [DisplayFormat(DataFormatString = @"{0:dd/MM/yyyy}")]
         public System.DateTime DateOfBirth { get; set; }
 
-        [Display(Name="Mobile Number")]
+        [Display(Name = "Mobile Number")]
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^\d{10}$", ErrorMessage = "Mobile Number must of 10 digits number only")]
         public string MobileNo { get; set; }
 
-        [Display(Name= "City")]
+        [Display(Name = "City")]
         public int CityId { get; set; }
 
-        [Display(Name= "Religion")]
+        [Display(Name = "Religion")]
         public int ReligionId { get; set; }
 
-        [Display(Name= "Height in Kgs")]
+        [Display(Name = "Height in Kgs")]
         public int HeightId { get; set; }
 
-        [Display(Name= "Mother tongue")]
+        [Display(Name = "Mother tongue")]
         public int MotherTongueId { get; set; }
 
-        [Display(Name= "Caste")]
+        [Display(Name = "Caste")]
         public int CasteId { get; set; }
 
-        [Display(Name="Gender")]
+        [Display(Name = "Gender")]
         public int GenderId { get; set; }
 
-        [Display(Name= "Skin Tone")]
+        [Display(Name = "Skin Tone")]
         public int SkinToneId { get; set; }
 
         [Display(Name = "Body Type")]
         public Nullable<int> BodyTypeId { get; set; }
 
         [Display(Name = "Body Weight")]
-        [Range(20,100)]
+        [Range(20, 100)]
         public Nullable<int> BodyWeight { get; set; }
 
         [Display(Name = "Diet")]
@@ -81,5 +81,9 @@ namespace MyMatrimony.Models
         [Required]
         public string AboutMyself { get; set; }
 
+        [Display(Name = "Last Online")]
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy hh:mm tt}", ApplyFormatInEditMode = true)]
+        public Nullable<System.DateTime> LastOnline { get; set; }
     }
 }

@@ -14,8 +14,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
-    @*@Styles.Render("~/Content/css")
-        @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
+    @* @Scripts.Render("~/bundles/modernizr")
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")*@
     @RenderSection("scripts", required: false)
@@ -67,7 +67,7 @@
                         @Html.ActionLink("Register", "Create", "Members", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link" })
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#loginModal">Log in</a>
                     </li>
                 </ul>
             </div>
@@ -81,6 +81,48 @@
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>
-    
+
+
+    <!-- Modal - Login -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">
+                        Login
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @using (Html.BeginForm())
+                    {
+                        <dl class="dl-horizontal">
+                            <dt>
+                                User Name
+                            </dt>
+                            <dd>
+                                @Html.TextBox("UserName", null, new { @class = "form-control" })
+                            </dd>
+                            <dt>
+                                Password
+                            </dt>
+                            <dd>
+                                @Html.Password("Password", null, new { @class = "form-control" })
+                            </dd>
+                        </dl>
+                    }
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="alert('Contact details sent to you throgh SMS.');">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </body>
 </html>

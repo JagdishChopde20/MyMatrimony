@@ -82,6 +82,7 @@
           <Property Name="Hobbies" Type="nvarchar" MaxLength="500" />
           <Property Name="AboutMyself" Type="nvarchar" MaxLength="1000" />
           <Property Name="ZodiacSignId" Type="int" />
+          <Property Name="LastOnline" Type="datetime" />
         </EntityType>
         <EntityType Name="tblMotherTongueMaster">
           <Key>
@@ -349,7 +350,7 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="MobileNo" Type="String" Nullable="false" />
+          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="CityId" Type="Int32" Nullable="false" />
           <Property Name="ReligionId" Type="Int32" Nullable="false" />
           <Property Name="HeightId" Type="Int32" Nullable="false" />
@@ -379,6 +380,7 @@
           <Property Name="ZodiacSignId" Type="Int32" />
           <NavigationProperty Name="tblZodiacSign" Relationship="MyMatrimonyDBModel.FK_tblMembers_tblZodiacSign" FromRole="tblMember" ToRole="tblZodiacSign" />
           <Property Name="BodyWeight" Type="Int32" />
+          <Property Name="LastOnline" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="tblMotherTongueMaster">
           <Key>
@@ -682,6 +684,7 @@
           <EntitySetMapping Name="tblMembers">
             <EntityTypeMapping TypeName="MyMatrimonyDBModel.tblMember">
               <MappingFragment StoreEntitySet="tblMembers">
+                <ScalarProperty Name="LastOnline" ColumnName="LastOnline" />
                 <ScalarProperty Name="BodyWeight" ColumnName="BodyWeight" />
                 <ScalarProperty Name="ZodiacSignId" ColumnName="ZodiacSignId" />
                 <ScalarProperty Name="AboutMyself" ColumnName="AboutMyself" />

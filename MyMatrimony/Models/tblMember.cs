@@ -38,6 +38,7 @@ namespace MyMatrimony.Models
         public string AboutMyself { get; set; }
         public Nullable<int> ZodiacSignId { get; set; }
         public Nullable<int> BodyWeight { get; set; }
+        public Nullable<System.DateTime> LastOnline { get; set; }
     
         public virtual tblCasteMaster tblCasteMaster { get; set; }
         public virtual tblCityMaster tblCityMaster { get; set; }
