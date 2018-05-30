@@ -6,6 +6,8 @@
     //Model = Model.Take(5);
 }
 
+<script src="~/Scripts/myScript.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -14,7 +16,7 @@
             var btnShortlist = $(this);
             var spanShortlist = $(this).children("span[data-myvalue=Shortlist]");
             var alertModelId = $(this).prop("name");
-            
+
             // Change Shortlist button style outline/solid
             btnShortlist.toggleClass("btn-outline-danger").toggleClass("btn-danger");
 
@@ -25,8 +27,8 @@
                 alertShortlist.children('strong[id=shortlistText]').text("removed from");
                 alertShortlist.children('h3').text('Removed from Shortlist');
                 // Show Alert
-                alertShortlist.parent('div').removeClass('d-none'); 
-                
+                alertShortlist.parent('div').removeClass('d-none');
+
                 setTimeout(function () {
                     alertShortlist.parent('div').addClass('d-none');
                 }, 3000);
@@ -36,7 +38,7 @@
                 alertShortlist.children('strong[id=shortlistText]').text("added to");
                 alertShortlist.children('h3').text('Added to Shortlist');
                 // Hide Alert
-                alertShortlist.parent('div').removeClass('d-none'); 
+                alertShortlist.parent('div').removeClass('d-none');
 
                 setTimeout(function () {
                     alertShortlist.parent('div').addClass('d-none');
@@ -52,6 +54,23 @@
 
 </script>
 
-<h2>Member List</h2>
+<h2 class="d-inline">Member List</h2>
 
-@Html.DisplayForModel()
+<div class="row">
+    <div class="col-lg-9">
+        @Html.DisplayForModel()
+    </div>
+    <div class="col-md-3">
+        <div class="card collapse show" id="filterDiv">
+            <div class="card-header bg-primary text-white">
+                Filter
+            </div>
+            body
+        </div>
+    </div>
+</div>
+
+<button class="btn fixed-bottom d-lg-none" type="button" data-toggle="collapse" data-target="#filterDiv" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+    <i class="fas fa-filter"></i> Filter
+</button>
+
