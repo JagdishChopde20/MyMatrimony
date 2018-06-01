@@ -17,7 +17,54 @@ namespace MyMatrimony.Controllers
         // GET: Members
         public ActionResult ListMembers()
         {
+            #region Filters - City Model
+            List<CheckBoxModel> cityModel = new List<CheckBoxModel>();
+            foreach (var city in db.tblCityMasters.ToList())
+            {
+                cityModel.Add(new CheckBoxModel() { Text = city.CityName, Value = city.Id.ToString(), isChecked = true });
+            }
+            ViewBag.Cities = cityModel;
+            #endregion
+            
+            #region Filters - Religion Model
+            List<CheckBoxModel> religionModel = new List<CheckBoxModel>();
+            foreach (var religion in db.tblReligionMasters.ToList())
+            {
+                religionModel.Add(new CheckBoxModel() { Text = religion.ReligionName, Value = religion.Id.ToString(), isChecked = true });
+            }
+            ViewBag.Religions = religionModel;
+
             var tblMembers = db.tblMembers.Include(t => t.tblCasteMaster).Include(t => t.tblCityMaster).Include(t => t.tblGenderMaster).Include(t => t.tblHeightMaster).Include(t => t.tblMotherTongueMaster).Include(t => t.tblReligionMaster).Include(t => t.tblSkinToneMaster).Include(t => t.tblAnnualIncomeMaster).Include(t => t.tblBodyTypeMaster).Include(t => t.tblDietMaster);
+            return View(tblMembers.ToList()); 
+            #endregion
+        }
+
+        /// <summary>
+        /// Apply filters if any and send the filtered data back
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult ListMembers(FormCollection form)
+        {
+            // Get the city checkbox values
+            var selectedCityChkBxIds = form.AllKeys.Where(x => x.StartsWith("chkCity_") && (form[x].Contains("true"))).ToList();
+            List<string> selectedCityIds = new List<string>();
+            foreach (var cityId in selectedCityChkBxIds)
+            {
+                selectedCityIds.Add(cityId.Substring(cityId.IndexOf('_') + 1));
+            }
+
+            // Form the cities master data to show in city filter
+            List<CheckBoxModel> cityModel = new List<CheckBoxModel>();
+            foreach (var city in db.tblCityMasters.ToList())
+            {
+                cityModel.Add(new CheckBoxModel() { Text = city.CityName, Value = city.Id.ToString(), isChecked = selectedCityIds.Contains(city.Id.ToString()) });
+            }
+            ViewBag.Cities = cityModel;
+
+            var tblMembers = db.tblMembers.Include(t => t.tblCasteMaster).Include(t => t.tblCityMaster).Include(t => t.tblGenderMaster).Include(t => t.tblHeightMaster).Include(t => t.tblMotherTongueMaster).Include(t => t.tblReligionMaster).Include(t => t.tblSkinToneMaster).Include(t => t.tblAnnualIncomeMaster).Include(t => t.tblBodyTypeMaster).Include(t => t.tblDietMaster);
+            tblMembers = tblMembers.Where(x => selectedCityIds.Contains(x.CityId.ToString()));
             return View(tblMembers.ToList());
         }
 
@@ -58,7 +105,7 @@ namespace MyMatrimony.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Exclude ="", Include = "Id,Email,Password,ConfirmPassword,Name,DateOfBirth,MobileNo,CityId,ReligionId,HeightId,MotherTongueId,CasteId,GenderId,SkinToneId,BodyTypeId,BodyWeight,DietId,Drink,Smoke,Education,AnnualIncomeId,Occupation,ZodiacSignId,Hobbies,AboutMyself")] tblMember tblMember)
+        public ActionResult Create([Bind(Exclude = "", Include = "Id,Email,Password,ConfirmPassword,Name,DateOfBirth,MobileNo,CityId,ReligionId,HeightId,MotherTongueId,CasteId,GenderId,SkinToneId,BodyTypeId,BodyWeight,DietId,Drink,Smoke,Education,AnnualIncomeId,Occupation,ZodiacSignId,Hobbies,AboutMyself")] tblMember tblMember)
         {
             if (ModelState.IsValid)
             {

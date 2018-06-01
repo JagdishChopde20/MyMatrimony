@@ -1,12 +1,12 @@
-﻿@model IEnumerable<MyMatrimony.Models.tblMember>
+﻿@using MyMatrimony.Models;
+
+@model IEnumerable<MyMatrimony.Models.tblMember>
 
 @{
     ViewBag.Title = "Member List";
 
     //Model = Model.Take(5);
 }
-
-<script src="~/Scripts/myScript.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -46,10 +46,27 @@
             }
         });
 
+        // Show Popover
         $('[data-toggle="popover"]').popover({
             trigger: 'focus'
         });
+
+        // Show tooltip
         $('[data-toggle="tooltip"]').tooltip();
+
+        // Post form on selection of city checkboxes filter
+        $('input[type="checkbox"]').click(function () {
+            $(this).closest('form').submit();
+        });
+
+        $('a[name="selectallChkBoxsForFilter"]').click(function () {
+            $(this).closest('form').find('input:checkbox').attr('checked', 'checked');
+            $(this).closest('form').submit();
+        });
+        $('a[name="deselectallChkBoxsForFilter"]').click(function () {
+            $(this).closest('form').find('input:checkbox').removeAttr('checked');
+            $(this).closest('form').submit();
+        });
     });
 
 </script>
@@ -62,10 +79,76 @@
     </div>
     <div class="col-md-3">
         <div class="card collapse show" id="filterDiv">
-            <div class="card-header bg-primary text-white">
-                Filter
+            <div class="card-header bg-dark text-white">Filters</div>
+            <div class="card-body" style="padding:0px">
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne" style="padding:0px">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    City
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne">
+                            <div class="card-body">
+                                @using (Html.BeginForm("ListMembers", "Members", FormMethod.Post))
+                                {
+                                    <a name="selectallChkBoxsForFilter" href="#">select all</a> <text>|</text> <a name="deselectallChkBoxsForFilter" href="#">deselect all</a>
+
+                                    foreach (var city in ((List<CheckBoxModel>)ViewBag.Cities).OrderBy(x => x.Text))
+                                    {
+                                        <label class="form-check-label">
+                                            @Html.CheckBox("chkCity_" + city.Value.ToString(), city.isChecked, new { @class = "form-check-inline" })
+                                            @city.Text
+                                        </label>
+                                        <br />
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo" style="padding:0px">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Religion
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo">
+                            <div class="card-body">
+                                @*<a id="selectallChkBoxsForCityFilter" href="#">select all</a> | <a id="deselectallChkBoxsForCityFilter" href="#"> deselect all </a>
+                                @using (Html.BeginForm("ListMembers", "Members", FormMethod.Post, new { name = "cityFilter" }))
+                                {
+                                    foreach (var religion in ((List<CheckBoxModel>)ViewBag.Religions).OrderBy(x => x.Text))
+                                    {
+                                        <label class="form-check-label">
+                                            @Html.CheckBox("chkReligion_" + religion.Value.ToString(), religion.isChecked, new { @class = "form-check-inline" })
+                                            @religion.Text
+                                        </label>
+                                        <br />
+                                    }
+                                }*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingThree" style="padding:0px">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Collapsible Group Item #3
+                                </button>
+                            </h5>
+                        </div>
+                        <div id="collapseThree" class="collapse show" aria-labelledby="headingThree">
+                            <div class="card-body">
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            body
         </div>
     </div>
 </div>
