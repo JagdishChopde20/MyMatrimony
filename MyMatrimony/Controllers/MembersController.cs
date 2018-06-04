@@ -47,6 +47,8 @@ namespace MyMatrimony.Controllers
         [HttpPost]
         public ActionResult ListMembers(FormCollection form)
         {
+            
+            #region City Model
             // Get the city checkbox values
             var selectedCityChkBxIds = form.AllKeys.Where(x => x.StartsWith("chkCity_") && (form[x].Contains("true"))).ToList();
             List<string> selectedCityIds = new List<string>();
@@ -62,9 +64,31 @@ namespace MyMatrimony.Controllers
                 cityModel.Add(new CheckBoxModel() { Text = city.CityName, Value = city.Id.ToString(), isChecked = selectedCityIds.Contains(city.Id.ToString()) });
             }
             ViewBag.Cities = cityModel;
+            #endregion
+
+            #region Religion Model
+            // Get the religion checkbox values
+            var selectedReligionChkBxIds = form.AllKeys.Where(x => x.StartsWith("chkReligion_") && (form[x].Contains("true"))).ToList();
+            List<string> selectedReligionIds = new List<string>();
+            foreach (var religionId in selectedReligionChkBxIds)
+            {
+                selectedReligionIds.Add(religionId.Substring(religionId.IndexOf('_') + 1));
+            }
+
+            // Form the religion master data to show in religion filter
+            List<CheckBoxModel> religionModel = new List<CheckBoxModel>();
+            foreach (var religion in db.tblReligionMasters.ToList())
+            {
+                religionModel.Add(new CheckBoxModel() { Text = religion.ReligionName, Value = religion.Id.ToString(), isChecked = selectedReligionIds.Contains(religion.Id.ToString()) });
+            }
+            ViewBag.Religions = religionModel;
+            #endregion
 
             var tblMembers = db.tblMembers.Include(t => t.tblCasteMaster).Include(t => t.tblCityMaster).Include(t => t.tblGenderMaster).Include(t => t.tblHeightMaster).Include(t => t.tblMotherTongueMaster).Include(t => t.tblReligionMaster).Include(t => t.tblSkinToneMaster).Include(t => t.tblAnnualIncomeMaster).Include(t => t.tblBodyTypeMaster).Include(t => t.tblDietMaster);
-            tblMembers = tblMembers.Where(x => selectedCityIds.Contains(x.CityId.ToString()));
+
+            // Apply filters
+            tblMembers = tblMembers.Where(x => selectedCityIds.Contains(x.CityId.ToString()) && selectedReligionIds.Contains(x.ReligionId.ToString()));
+            
             return View(tblMembers.ToList());
         }
 
